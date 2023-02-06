@@ -36,6 +36,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Runs the mock server, which can supply data if there is no avaiable back-end service.
 
+**`For this project, it's mandatory.`**
+
+The api url is [http://localhost:4000/api/***](http://localhost:4000/api/***)
+
 
 ## Requirement Brief
 
