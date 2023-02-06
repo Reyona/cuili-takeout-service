@@ -1,8 +1,11 @@
 # cuili-takeout-service
+
 an SPA supplys takeout service
 
 
 ## Quick Start
+
+This project is start from [create-react-app](https://create-react-app.dev/) cli.
 
 In the project directory, you can run:
 
@@ -51,13 +54,20 @@ According to the requirement and UI/UX design, the data access layer should incl
 
 The actions to access store should at least include: add food, remove food, calculate total price, get shop info.
 
-[img]
+This part is implemented by [Redux](https://www.redux.org.cn/).
+
+![avatar](/docs/store.png)
 
 
 ## Component Design
 
 According to the UI/UX design, the page should at least contain: navigation bar, menu, order, shop infomation, bottom bar.
 
-Except the Menu component is implemented by Carousel of Ant Design for efficiency, the others are implemented by native Javascript and Html.
+Except the Menu component is implemented by [Carousel of Ant Design](https://ant-design.antgroup.com/components/carousel-cn) for efficiency, the others are implemented by native Javascript and Html.
 
-[img]
+![avatar](/docs/component-design.png)
+
+
+## Auto Testing Design
+
+Most of primary components are ensured stable by auto testing, based on [testing-library/react](https://testing-library.com/docs/react-testing-library/intro).
