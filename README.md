@@ -3,7 +3,7 @@
 an SPA supplys takeout service
 
 
-## Quick Start
+## **Quick Start**
 
 This project is start from [create-react-app](https://create-react-app.dev/) cli.
 
@@ -41,7 +41,7 @@ Runs the mock server, which can supply data if there is no avaiable back-end ser
 The api url is [http://localhost:4000/api/***](http://localhost:4000/api/***)
 
 
-## Requirement Brief
+## **Requirement Brief**
 
 This is an SPA, which supplys takeout service. Customers can see the menu and select their favorite foods.
 
@@ -52,18 +52,18 @@ As they select or deselect food, the price will be re-calculated and refreshed o
 What they have already selected will be shown.
 
 
-## Storage Design
+## **State Management Design**
 
-According to the requirement and UI/UX design, the data access layer should include: 3 kinds of food, shop infomation, and customer infomation.
+According to the requirement and UI/UX design, the state should include: 3 kinds of food, shop infomation, and customer infomation.
 
-The actions to access store should at least include: add food, remove food, calculate total price, get shop info.
+The actions to access state should at least include: add food, remove food, calculate total price, get shop info.
 
 This part is implemented by [Redux](https://www.redux.org.cn/).
 
 ![avatar](/docs/store.png)
 
 
-## Component Design
+## **Component Design**
 
 According to the UI/UX design, the page should at least contain: navigation bar, menu, order, shop infomation, bottom bar.
 
@@ -71,7 +71,60 @@ Except the Menu component is implemented by [Carousel of Ant Design](https://ant
 
 ![avatar](/docs/component-design.png)
 
+**`<Header>`** : 
 
-## Auto Testing Design
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| onChange  | √ | (item: HeaderItemType, index: number): void | will be called when user click on unactived item |
+
+**`<Footer>`** : 
+
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| order  | √ | OrderType | used to calculate and refresh the price |
+| onPay  | √ | (): void | will be called when user click on the 'Pay' button |
+
+**`<Menu>`** : 
+
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| menu  | √ | ShopType['menu'] | used to display menu |
+| addFood  |  | (param: FoodType): void | will be called when user click on 'Add' button, used by `<MenuItem>` |
+| renderItem  |  | any | used to render menu item, `<MenuItem>` is default |
+| [key: string]  |  | any | the other props will be transmited to the renderItem |
+
+**`<MenuItem>`** : 
+
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| food  | √ | FoodType | used to display food infomation |
+
+**`<Order>`** : 
+
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| order  | √ | OrderType | used to display selected food in order |
+| removeFood  |  | (food: FoodType): void | will be transmited to the `<OrderItem>` |
+| renderItem  |  | any | used to render order item, `<OrderItem>` is default |
+| [key: string]  |  | any | the other props will be transmited to the renderItem |
+
+**`<OrderItem>`** : 
+
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| food  | √ | FoodType | used to display the selected food infomation |
+| removeFood  |  | (food: FoodType): void | will be called when user click on the selected food |
+
+**`<Shop>`** : 
+
+|  props   | mandatory  | type  | description  |
+|  ----  | ----  | ----  | ----  |
+| shop  | √ | ShopType | used to display the shop infomation |
+| onClickPhone  | √ | (): void | will be called when user click on the 'Phone' button |
+
+
+## **Auto Testing Design**
 
 Most of primary components are ensured stable by auto testing, based on [testing-library/react](https://testing-library.com/docs/react-testing-library/intro).
+
+The testing has covered: the reducers and actions of state, Header, Footer, Menu, MenuItem, Order, OrderItem, Shop.
