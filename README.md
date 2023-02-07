@@ -7,9 +7,17 @@ an SPA supplys takeout service
 
 This project is start from [create-react-app](https://create-react-app.dev/) cli.
 
+### **You can start with this command:**
+
+```powershell
+npm run mockserver
+
+npm run start
+```
+
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
