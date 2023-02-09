@@ -5,6 +5,7 @@ import './Menu.css';
 import { FoodType, ShopType } from '@/types/order';
 import MenuItem from '@components/eat/MenuItem';
 import addIcon from '@resources/add.png';
+import starIcon from '@resources/star.svg';
 
 interface Props {
     menu: ShopType['menu'];
@@ -15,6 +16,7 @@ interface Props {
 
 const Menu = ({ menu, addFood = f => f, renderItem = MenuItem, ...props }: Props) => {
     let [currentFood, setCurrentFood] = useState(0);
+    let [starStyle, setStarStyle] = useState(0);
     let [isSwiping, setIsSwiping] = useState(false);
     let [touchStartX, setTouchStartX] = useState(-1);
 
@@ -31,7 +33,10 @@ const Menu = ({ menu, addFood = f => f, renderItem = MenuItem, ...props }: Props
     };
     const onTouchMove = (e: any) => {
         // console.log('onTouchMove:', e);
-        if (!isSwiping && Math.abs(e.changedTouches[0].clientX - touchStartX) > 50) setIsSwiping(true);
+        if (!isSwiping && Math.abs(e.changedTouches[0].clientX - touchStartX) > 50) {
+            setIsSwiping(true);
+            setStarStyle((starStyle + 1) % menu.length);
+        }
     }
     const onTouchStart = (e: any) => {
         // console.log('onTouchStart:', e);
@@ -56,6 +61,11 @@ const Menu = ({ menu, addFood = f => f, renderItem = MenuItem, ...props }: Props
                     menu.map((food) => <div key={food.id} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onTouchMove={onTouchMove}>{renderItem({ food, ...itemProps })}</div>)
                 }
             </Carousel>
+            <div className={`stars stars-${starStyle + 1}`}>
+                <img src={starIcon} alt='star' className='star-icon large' />
+                <img src={starIcon} alt='star' className='star-icon medium' />
+                <img src={starIcon} alt='star' className='star-icon small' />
+            </div>
             <div style={{ opacity: isSwiping ? '0' : '1' }} className={`food-info ${isSwiping ? 'fade-out-down' : 'fade-in-down'}`}>
                 <p className='food-name'>{menu[currentFood].name}</p>
                 <p className='food-price'>{menu[currentFood].price / 100}$</p>

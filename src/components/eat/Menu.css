@@ -1,100 +1,184 @@
 .menu {
-    position: relative;
-    width: 100%;
-    height: 285px;
-    border-bottom: 3px solid #F2F1F1;
+  position: relative;
+  width: 100%;
+  height: 285px;
+  border-bottom: 3px solid #F2F1F1;
 }
 
 .menu .food-info {
-    position: absolute;
-    top: 80px;
-    right: 48px;
-    pointer-events: none;
+  position: absolute;
+  top: 80px;
+  right: 48px;
+  pointer-events: none;
 }
 
 .menu .food-info .food-name {
-    margin: 0;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 32px;
-    color: #EB5C77;
-    text-align: right;
+  margin: 0;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 32px;
+  color: #EB5C77;
+  text-align: right;
 }
 
 .menu .food-info .food-price {
-    margin: 6px 0 0;
-    font-weight: 300;
-    font-size: 24px;
-    line-height: 24px;
-    color: #EB5C77;
-    text-align: right;
+  margin: 6px 0 0;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 24px;
+  color: #EB5C77;
+  text-align: right;
 }
 
 .menu .add-button {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+}
+
+/* menu star style */
+/* There will be a few adjustments to the design for adapting different food pictures. */
+
+.menu .stars {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.menu .stars .star-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menu .stars .star-icon.large {
+  width: 25px;
+  height: 27px;
+  transition-property: top, left;
+  transition-duration: 1s, 1s;
+}
+
+.menu .stars .star-icon.medium {
+  width: 15px;
+  height: 17px;
+  transition-property: top, left;
+  transition-duration: 1s, 1s;
+}
+
+.menu .stars .star-icon.small {
+  width: 11px;
+  height: 13px;
+  transition-property: top, left;
+  transition-duration: 1s, 1s;
+}
+
+.menu .stars.stars-1 .star-icon.large {
+  top: 10px;
+  left: 172px;
+}
+
+.menu .stars.stars-1 .star-icon.medium {
+  top: 110px;
+  left: 25px;
+}
+
+.menu .stars.stars-1 .star-icon.small {
+  top: 84px;
+  left: 210px;
+}
+
+.menu .stars.stars-2 .star-icon.large {
+  top: 164px;
+  left: 200px;
+}
+
+.menu .stars.stars-2 .star-icon.medium {
+  top: 178px;
+  left: 32px;
+}
+
+.menu .stars.stars-2 .star-icon.small {
+  top: 40px;
+  left: 168px;
+}
+
+.menu .stars.stars-3 .star-icon.large {
+  top: 160px;
+  left: 26px;
+}
+
+.menu .stars.stars-3 .star-icon.medium {
+  top: 32px;
+  left: 40px;
+}
+
+.menu .stars.stars-3 .star-icon.small {
+  top: 200px;
+  left: 185px;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .fade-in {
-    animation: fadeIn .5s;
-    -webkit-animation: fadeIn .5s;
+  from {
+    opacity: 0;
   }
 
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-  
-    to {
-      opacity: 0;
-    }
+  to {
+    opacity: 1;
   }
-  
-  .fade-out {
-    animation: fadeOut .5s;
-    -webkit-animation: fadeOut .5s;
+}
+
+.fade-in {
+  animation: fadeIn .5s;
+  -webkit-animation: fadeIn .5s;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
   }
 
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translate3d(0, -100%, 0);
-    }
-  
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+  to {
+    opacity: 0;
   }
-  
-  .fade-in-down {
-    animation: fadeInDown .5s;
-    -webkit-animation: fadeInDown .5s;
+}
+
+.fade-out {
+  animation: fadeOut .5s;
+  -webkit-animation: fadeOut .5s;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
   }
 
-  @keyframes fadeOutDown {
-    from {
-      opacity: 1;
-    }
-  
-    to {
-      opacity: 0;
-      transform: translate3d(0, 100%, 0);
-    }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
-  
-  .fade-out-down {
-    animation: fadeOutDown .5s;
-    -webkit-animation: fadeOutDown .5s;
+}
+
+.fade-in-down {
+  animation: fadeInDown .5s;
+  -webkit-animation: fadeInDown .5s;
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
   }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.fade-out-down {
+  animation: fadeOutDown .5s;
+  -webkit-animation: fadeOutDown .5s;
+}
