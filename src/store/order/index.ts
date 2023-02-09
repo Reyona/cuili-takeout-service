@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { Order } from '../actions';
-import { FoodType, CustomerType, OrderType } from '@/types/order';
-import { QueryShopRequest, queryShopInfo } from '@/api/shop';
+import { FoodType, CustomerType, ShopType, OrderType } from '@/types/order';
+import { QueryShopRequest/*, queryShopInfo*/ } from '@/api/shop';
 
 export type StateType = Readonly<{ order: OrderType }>;
 type ActionType = { type: string; payload?: any };
@@ -11,50 +11,50 @@ const initialCustomer: CustomerType = {
     location: 'Nanshan Disctric, Shenzhen',
     telephone: '18988888888',
 }
-// const initialShop: ShopType = {
-//     id: 'shop888',
-//     location: ['Dongcheng District Metro', 'Cultural Building'],
-//     telephone: '18999999999',
-//     menu: [
-//         {
-//             id: 'snack001',
-//             type: 'snack',
-//             price: 400,
-//             name: 'FRIES',
-//             banner: require('@resources/fries_1.svg').default,
-//             bannerAnimation: '',
-//             bannerStars: 1,
-//             preview: require('@resources/fries.svg').default,
-//         },
-//         {
-//             id: 'drink001',
-//             type: 'drink',
-//             price: 300,
-//             name: 'LATTE',
-//             banner: require('@resources/latte_1.svg').default,
-//             bannerAnimation: '',
-//             bannerStars: 2,
-//             preview: require('@resources/latte.svg').default,
-//         },
-//         {
-//             id: 'main001',
-//             type: 'main',
-//             price: 600,
-//             name: 'BURGER',
-//             banner: require('@resources/burger_1.svg').default,
-//             bannerAnimation: '',
-//             bannerStars: 3,
-//             preview: require('@resources/burger.svg').default,
-//         },
-//     ],
-// }
+const initialShop: ShopType = {
+    id: 'shop888',
+    location: ['Dongcheng District Metro', 'Cultural Building'],
+    telephone: '18999999999',
+    menu: [
+        {
+            id: 'snack001',
+            type: 'snack',
+            price: 400,
+            name: 'FRIES',
+            banner: require('@resources/fries_1.svg').default,
+            bannerAnimation: '',
+            bannerStars: 1,
+            preview: require('@resources/fries.svg').default,
+        },
+        {
+            id: 'drink001',
+            type: 'drink',
+            price: 300,
+            name: 'LATTE',
+            banner: require('@resources/latte_1.svg').default,
+            bannerAnimation: '',
+            bannerStars: 2,
+            preview: require('@resources/latte.svg').default,
+        },
+        {
+            id: 'main001',
+            type: 'main',
+            price: 600,
+            name: 'BURGER',
+            banner: require('@resources/burger_1.svg').default,
+            bannerAnimation: '',
+            bannerStars: 3,
+            preview: require('@resources/burger.svg').default,
+        },
+    ],
+}
 export const initialState: StateType = {
     order: {
         drink: undefined,
         main: undefined,
         snack: undefined,
         totalPrice: 0,
-        shop: undefined,
+        shop: initialShop,
         customer: initialCustomer,
     }
 };
@@ -72,8 +72,9 @@ function calculatePrice(order: OrderType) {
 
 export function getShop(param: QueryShopRequest) {
     return async (dispatch: Dispatch) => {
-        const data = await queryShopInfo(param);
-        dispatch({ type: Order.SET_SHOP, payload: data });
+        // comment this code for the mockserver compatibility issue
+        // const data = await queryShopInfo(param);
+        // dispatch({ type: Order.SET_SHOP, payload: data });
     };
 }
 
