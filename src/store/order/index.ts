@@ -4,7 +4,8 @@ import { FoodType, CustomerType, ShopType, OrderType } from '@/types/order';
 import { QueryShopRequest/*, queryShopInfo*/ } from '@/api/shop';
 
 export type StateType = Readonly<{ order: OrderType }>;
-type ActionType = { type: string; payload?: any };
+type ShopActionType = { type: string; payload: ShopType };
+type OrderActionType = { type: string; payload?: FoodType };
 
 const initialCustomer: CustomerType = {
     id: 'customer888',
@@ -101,39 +102,37 @@ function handlePics(foodList:any) {
     return result;
 }
 
-export default function orderReducers (state = initialState, action: ActionType) {
+export default function orderReducers (state = initialState, action: ShopActionType | OrderActionType) {
     switch (action.type) {
         case Order.SET_SHOP:
-            if (action.payload) {
-                return {
-                    ...state,
-                    order: {
-                        ...state.order,
-                        shop: {
-                            ...action.payload,
-                            menu: handlePics(action.payload.menu)
-                        },
-                    }
-                };
-            }
+            if (action.payload && 'menu' in action.payload) return {
+                ...state,
+                order: {
+                    ...state.order,
+                    shop: {
+                        ...action.payload,
+                        menu: handlePics(action.payload.menu)
+                    },
+                }
+            }; // payload is ShopType
             else return state;
         case Order.ADD_FOOD:
-            if (action.payload?.type) return {
+            if (action.payload && 'type' in action.payload) return {
                 ...state,
                 order: {
                     ...state.order,
                     [action.payload.type]: action.payload,
                 }
-            };
+            }; // payload is FoodType
             else return state;
         case Order.REMOVE_FOOD:
-            if (action.payload?.type) return {
+            if (action.payload && 'type' in action.payload) return {
                 ...state,
                 order: {
                     ...state.order,
                     [action.payload.type]: undefined,
                 }
-            }
+            } // payload is FoodType
             else return state;
         case Order.CALC_TOTAL_PRICE:
             return {
@@ -142,7 +141,7 @@ export default function orderReducers (state = initialState, action: ActionType)
                     ...state.order,
                     totalPrice: calculatePrice(state.order),
                 }
-            }
+            } // not need payload
         default:
             return state;
     }
