@@ -105,7 +105,7 @@ function handlePics(foodList:any) {
 export default function orderReducers (state = initialState, action: ShopActionType | OrderActionType) {
     switch (action.type) {
         case Order.SET_SHOP:
-            if (action.payload && 'menu' in action.payload) return {
+            if ('menu' in action.payload!) return {
                 ...state,
                 order: {
                     ...state.order,
@@ -117,7 +117,7 @@ export default function orderReducers (state = initialState, action: ShopActionT
             }; // payload is ShopType
             else return state;
         case Order.ADD_FOOD:
-            if (action.payload && 'type' in action.payload) return {
+            if ('type' in action.payload!) return {
                 ...state,
                 order: {
                     ...state.order,
@@ -126,7 +126,7 @@ export default function orderReducers (state = initialState, action: ShopActionT
             }; // payload is FoodType
             else return state;
         case Order.REMOVE_FOOD:
-            if (action.payload && 'type' in action.payload) return {
+            if ('type' in action.payload!) return {
                 ...state,
                 order: {
                     ...state.order,
