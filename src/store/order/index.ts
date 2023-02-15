@@ -72,23 +72,23 @@ function calculatePrice(order: OrderType) {
 }
 
 export function getShop(param: QueryShopRequest) {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch) => { // action creater
         // comment this code for the mockserver compatibility issue
         // const data = await queryShopInfo(param);
-        // dispatch({ type: Order.SET_SHOP, payload: data });
+        // dispatch({ type: Order.SET_SHOP, payload: data }); // 产生action并立即提交
     };
 }
 
 export function addFood(food: FoodType) {
-    return (dispatch: Dispatch) => {
-        dispatch({ type: Order.ADD_FOOD, payload: food });
+    return (dispatch: Dispatch) => { // action creater
+        dispatch({ type: Order.ADD_FOOD, payload: food }); // 产生action并立即提交
         dispatch({ type: Order.CALC_TOTAL_PRICE });
     };
 }
 
 export function removeFood(food: FoodType) {
-    return (dispatch: Dispatch) => {
-        dispatch({ type: Order.REMOVE_FOOD, payload: food });
+    return (dispatch: Dispatch) => { // action creater
+        dispatch({ type: Order.REMOVE_FOOD, payload: food }); // 产生action并立即提交
         dispatch({ type: Order.CALC_TOTAL_PRICE });
     };
 }
@@ -102,11 +102,11 @@ function handlePics(foodList:any) {
     return result;
 }
 
-export default function orderReducers (state = initialState, action: ShopActionType | OrderActionType) {
+export default function orderReducers (state = initialState, action: ShopActionType | OrderActionType) { // reducer
     switch (action.type) {
         case Order.SET_SHOP:
-            if ('menu' in action.payload!) return {
-                ...state,
+            if ('menu' in action.payload!) return { // 接收旧state和action，返回新state
+                ...state, // 要不可变数据，防止PureComponent无法触发重渲染
                 order: {
                     ...state.order,
                     shop: {
